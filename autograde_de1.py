@@ -9,7 +9,11 @@ WEIGHTS = {"Cau1a":2/3,"Cau1b":2/3,"Cau1c":2/3,"Cau2a":2/3,"Cau2b":2/3,"Cau2c":2
 def normalize(s): return " ".join(s.casefold().split())
 def run_code(path, data, timeout=5.0):
     try:
-        r = subprocess.run([sys.executable, str(path)], input=data, text=True, encoding="utf-8", errors="replace", capture_output=True, timeout=timeout, cwd=path.parent)
+        import os
+        env = os.environ.copy()
+        env["PYTHONIOENCODING"] = "utf-8"
+        env["PYTHONUTF8"] = "1"
+        r = subprocess.run([sys.executable, str(path)], input=data, text=True, encoding="utf-8", errors="replace", capture_output=True, timeout=timeout, cwd=path.parent, env=env)
         return [x.strip() for x in r.stdout.splitlines() if x.strip()], (r.stderr.strip() if r.returncode else None)
     except subprocess.TimeoutExpired: return [], "Qua thoi gian cho (timeout)"
 def grade(student_id="Chua nhap", base_dir=DEFAULT_SUBMISSIONS):
