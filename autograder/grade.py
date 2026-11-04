@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import math
+import sys
 from dataclasses import asdict, is_dataclass
 from pathlib import Path
 from types import ModuleType
@@ -23,6 +24,7 @@ def load_submission(file_path: str | Path) -> ModuleType:
         raise ImportError(f"Không thể đọc file bài làm: {path}")
 
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
