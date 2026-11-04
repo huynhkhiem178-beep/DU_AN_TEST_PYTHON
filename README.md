@@ -86,6 +86,15 @@ Chương trình sẽ:
 
 **Lưu ý:** Bộ chấm hiện tại gọi trực tiếp hàm/lớp trong file bài làm và kiểm tra giá trị trả về. Nó chưa mô phỏng nhập liệu từ bàn phím hoặc chấm nội dung in ra màn hình như script mẫu dạng `subprocess`.
 
+### Chạy chấm điểm bằng cách nhấp đúp
+
+Có thể chấm bài mà không cần gõ lệnh PowerShell:
+
+- Mở `submissions/de1/bai_lam.py` bằng cách nhấp đúp để chạy và nhập mã sinh viên khi được hỏi.
+- Hoặc nhấp đúp file `cham_diem.bat` ở thư mục gốc dự án. Cách này phù hợp khi Windows không mở cửa sổ console cho file Python.
+
+Hai cách trên dùng Python đã cài trên máy (lệnh `py` đối với file BAT), không cần tạo lại môi trường ảo. Máy cần cài Python và chạy được lệnh `py`.
+
 ## 6. Thêm đề mới
 
 - Tạo file dữ liệu kiểm thử riêng trong thư mục `autograder/`.
