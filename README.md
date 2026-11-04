@@ -1,106 +1,109 @@
 # Dự án kiểm thử và chấm điểm tự động Python
 
-Dự án có hai phần:
-- **Pytest:** kiểm thử các hàm Python theo từng câu của đề.
-- **Autograder:** chạy bộ test đã định nghĩa, đối chiếu kết quả và tính điểm trên thang 10.
+Dự án có hai cách kiểm thử bài Python:
 
-Bộ câu hỏi hiện có được xây dựng theo nội dung đề mã **11301** đã dùng trong dự án. Mỗi câu tối đa 2 điểm.
+- **Pytest:** chạy kiểm thử tự động cho các bài và chức năng.
+- **Autograder dạng chạy file:** chạy từng file bài làm bằng Python, truyền dữ liệu vào `input()`, lấy nội dung `print()` để so sánh với kết quả mong đợi và tính điểm.
 
-## 1. Cấu trúc thư mục
+## 1. Cấu trúc chính
 
 ```text
 DU_AN_TEST_PYTHON/
-├── src/
-│   ├── __init__.py
-│   └── exam_tasks.py
+├── submissions_de1/
+│   ├── Cau1.py
+│   ├── Cau2.py
+│   ├── Cau3.py
+│   ├── Cau4.py
+│   └── Cau5.py
 ├── tests/
 │   ├── test_question_1_numbers.py
 │   ├── test_question_2_strings.py
 │   ├── test_question_3_lists.py
 │   ├── test_question_4_dictionary.py
 │   ├── test_question_5_oop.py
-│   └── test_autograder.py
+│   ├── test_autograder.py
+│   └── test_de1_pytest.py
 ├── autograder/
-│   ├── __init__.py
 │   ├── test_cases_de1.py
 │   └── grade.py
-├── submissions/
-│   ├── de1/
-│   └── de2/
+├── src/
+│   └── exam_tasks.py
+├── test_de1.py
+├── autograde_de1.py
+├── cham_de_11301.bat
 ├── pytest.ini
-├── requirements.txt
-├── .gitignore
-└── README.md
+└── requirements.txt
 ```
 
-## 2. Nội dung đề 11301
+## 2. Đề 11301
 
-| Câu | Nội dung |
+Các file `submissions_de1/Cau1.py` đến `Cau5.py` là bài làm mẫu theo từng câu. Bộ test chạy file nằm trong `test_de1.py`.
+
+| File | Nội dung |
 |---|---|
-| 1 | Kiểm tra số nguyên, đếm chữ số lẻ, tính tổng phân số |
-| 2 | Xử lý chuỗi: đếm chữ hoa, kiểm tra đối xứng, tính tổng chữ số |
-| 3 | Xử lý danh sách: dừng khi gặp 0, tổng số dương chẵn, đếm phần tử |
-| 4 | Quản lý sách bằng từ điển, thêm và xóa theo mã |
-| 5 | Lập trình hướng đối tượng với lớp `DienThoai` |
+| `Cau1.py` | Kiểm tra n, đếm chữ số lẻ và tính tổng phân số |
+| `Cau2.py` | Xử lý chuỗi: đếm chữ hoa, kiểm tra đối xứng, tính tổng chữ số |
+| `Cau3.py` | Danh sách số nguyên, dừng khi gặp 0, tính tổng và đếm phần tử |
+| `Cau4.py` | Quản lý sách bằng từ điển, thêm và xóa sách |
+| `Cau5.py` | Lập trình hướng đối tượng với lớp `DienThoai` |
 
-## 3. Cài đặt trên Windows
+**Lưu ý về dữ liệu đề:** PDF đã tải lên ở cuộc trò chuyện này không hiển thị được nội dung câu hỏi đủ rõ để đối chiếu. Vì vậy, các bài mẫu và test 11301 hiện tại được giữ theo bộ nội dung đã có trong dự án; riêng cách nhập dữ liệu cho câu 4 được quy ước trong phần chú thích của `test_de1.py`. Cần kiểm tra lại với đề gốc/giảng viên trước khi xem đây là bộ test chính thức.
 
-Mở PowerShell tại thư mục dự án:
+## 3. Chạy chấm tự động theo kiểu file input/output
+
+Mỗi câu là một file Python độc lập. Bộ chấm gọi file bằng chính Python đang cài trên máy, gửi dữ liệu qua stdin và kiểm tra stdout.
+
+Từ thư mục gốc dự án, chạy:
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+py autograde_de1.py --student-id SV001
 ```
 
-Không bắt buộc phải kích hoạt môi trường ảo.
+Hoặc nhấp đúp file:
+
+```text
+cham_de_11301.bat
+```
+
+Muốn chấm bài khác, thay các file trong `submissions_de1/` bằng bài làm tương ứng và giữ nguyên tên `Cau1.py` ... `Cau5.py`.
 
 ## 4. Chạy Pytest
 
-Chạy toàn bộ kiểm thử:
+Cài thư viện:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest -v
+py -m pip install -r requirements.txt
 ```
 
-Chạy riêng một câu:
+Chạy toàn bộ test:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pytest tests/test_question_1_numbers.py
+py -m pytest
 ```
 
-## 5. Chấm tự động bài làm
-
-1. Đặt file bài làm của sinh viên trong thư mục tương ứng, ví dụ `submissions/de1/bai_lam.py`.
-2. File bài làm cần định nghĩa các hàm/lớp có tên, tham số và kiểu kết quả tương ứng với các mục trong `src/exam_tasks.py`.
-3. Chạy lệnh từ thư mục gốc:
+Chạy riêng bộ test dạng chạy file:
 
 ```powershell
-.\.venv\Scripts\python.exe -m autograder.grade submissions/de1/bai_lam.py --student-id SV001
+py -m pytest tests/test_de1_pytest.py
 ```
 
-Chương trình sẽ:
-- Chạy từng test case trong bộ dữ liệu đề 01.
-- Hiển thị PASS hoặc FAIL cho từng test.
-- Tính điểm từng câu theo tỉ lệ test đúng.
-- Cộng điểm 5 câu, tối đa 10 điểm.
+## 5. Bộ chấm hoạt động như thế nào?
 
-**Lưu ý:** Bộ chấm hiện tại gọi trực tiếp hàm/lớp trong file bài làm và kiểm tra giá trị trả về. Nó chưa mô phỏng nhập liệu từ bàn phím hoặc chấm nội dung in ra màn hình như script mẫu dạng `subprocess`.
+1. Đọc danh sách test trong `test_de1.py`.
+2. Tìm file bài làm tương ứng trong `submissions_de1/`.
+3. Chạy file bằng subprocess và truyền dữ liệu đầu vào.
+4. So sánh các nội dung mong đợi với kết quả in ra.
+5. Tính điểm từng câu tối đa 2 điểm, tổng tối đa 10 điểm.
 
-### Chạy chấm điểm bằng cách nhấp đúp
+Bộ chấm có giới hạn thời gian chạy cho mỗi test để tránh chương trình bị treo.
 
-Có thể chấm bài mà không cần gõ lệnh PowerShell:
+## 6. Cấu trúc cũ
 
-- Mở `submissions/de1/bai_lam.py` bằng cách nhấp đúp để chạy và nhập mã sinh viên khi được hỏi.
-- Hoặc nhấp đúp file `cham_diem.bat` ở thư mục gốc dự án. Cách này phù hợp khi Windows không mở cửa sổ console cho file Python.
+Các thư mục `src/`, `autograder/` và những test cũ vẫn được giữ lại để không làm mất phần kiểm thử theo hàm/lớp đã xây dựng trước đó. Hai cách chấm có mục đích khác nhau:
 
-Hai cách trên dùng Python đã cài trên máy (lệnh `py` đối với file BAT), không cần tạo lại môi trường ảo. Máy cần cài Python và chạy được lệnh `py`.
+- `py autograde_de1.py`: chấm chương trình tương tác qua input/output.
+- `py -m autograder.grade submissions/de1/bai_lam.py --student-id SV001`: chấm trực tiếp hàm/lớp theo bộ test cũ.
 
-## 6. Thêm đề mới
+## 7. Thêm đề mới
 
-- Tạo file dữ liệu kiểm thử riêng trong thư mục `autograder/`.
-- Mỗi test case cần có tên hàm, tham số đầu vào và kết quả mong đợi.
-- Chỉ thêm đáp án khi có nội dung đề và đáp án đáng tin cậy. Thư mục `submissions/de2/` hiện là nơi đặt bài làm; chưa có bộ test đề 02 được xác nhận.
-
-## 7. Ghi chú
-
-Công thức câu 1c đang được hiểu là `1/2 + 1/4 + ... + 1/(2n)` theo cách diễn giải đã dùng khi xây dựng phiên bản trước. Cần đối chiếu lại với đề/đáp án gốc nếu giảng viên yêu cầu chính xác tuyệt đối.
+Khi có đề mới, tạo bộ dữ liệu test riêng, các file bài làm tương ứng và một script chấm riêng. Chỉ đưa test vào sử dụng khi đã đối chiếu nội dung đề và xác định rõ dữ liệu đầu vào/đầu ra mong đợi.
