@@ -1,22 +1,10 @@
-"""Cau 3 - De thi Python 11301.
-Nhap danh sach so nguyen, dung khi nhap 0.
+"""CAU 3 - De 11301
+Yeu cau: Nhap danh sach so nguyen, dung khi gap 0,
+tinh tong so duong chan va dem so lan xuat hien cua k.
 """
 def main():
-    numbers = []
-    while True:
-        try:
-            value = int(input("Nhap phan tu (0 de dung): "))
-        except ValueError:
-            print("Vui long nhap so nguyen!")
-            continue
-        if value == 0:
-            break
-        numbers.append(value)
-
-    print("Danh sach:", numbers)
-    print("Tong so duong chan:", sum(x for x in numbers if x > 0 and x % 2 == 0))
-    k = int(input("Nhap k can dem: "))
-    print("So lan xuat hien cua k:", numbers.count(k))
+    # TODO: Tu viet loi giai Cau 3 tai day
+    pass
 
 if __name__ == "__main__":
     main()
