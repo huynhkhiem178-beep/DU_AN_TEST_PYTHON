@@ -1,14 +1,19 @@
-"""Du lieu test cho de thi Python ma 11301.
-
-Moi cau 2 diem. Moi test case co stdin va cac chuoi can tim trong stdout.
-Voi cau 4, quy uoc dau vao la: so luong sach -> thong tin tung sach
-(ma, ten, tac gia, nha xuat ban, nam) -> ma sach can xoa.
+"""Test input/output cho de 11301.
+Cau 1 duoc tach thanh 1a, 1b, 1c. Tong diem Cau 1 la 2 diem,
+chia deu cho ba y. Moi cau 2-5 toi da 2 diem.
 """
 tests = {
-    "Cau1": [
-        {"input": "635\n", "expected": ["So luong chu so le:", "2", "Tong S:"]},
-        {"input": "468\n", "expected": ["So luong chu so le:", "0", "Tong S:"]},
-        {"input": "0\n1501\n12\n", "expected": ["Nhap lai!", "So luong chu so le:", "1"]},
+    "Cau1a": [
+        {"input": "635\n", "expected": ["n hop le:", "635"]},
+        {"input": "0\n1501\n12\n", "expected": ["nhap lai!", "n hop le:", "12"]},
+    ],
+    "Cau1b": [
+        {"input": "635\n", "expected": ["so luong chu so le la:", "2"]},
+        {"input": "468\n", "expected": ["so luong chu so le la:", "0"]},
+    ],
+    "Cau1c": [
+        {"input": "1\n", "expected": ["s =", "0.5"]},
+        {"input": "2\n", "expected": ["s =", "0.75"]},
     ],
     "Cau2": [
         {"input": "Abc123\n", "expected": ["So ky tu chu hoa:", "1", "Chuoi doi xung:", "False", "Tong cac chu so:", "6"]},
