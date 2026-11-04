@@ -80,3 +80,50 @@ class DienThoai:
     def thongtindienthoai(self) -> str:
         # TODO: Trả về thông tin điện thoại theo định dạng yêu cầu của đề.
         raise NotImplementedError
+
+
+
+def _run_autograder() -> None:
+    """Cho phép nhấp đúp file này để tự chấm bài trên Windows."""
+    import sys
+    from pathlib import Path
+
+    submission_path = Path(__file__).resolve()
+
+    # Tìm thư mục gốc dự án để có thể chạy dù mở file từ vị trí khác.
+    project_root = next(
+        (
+            parent
+            for parent in submission_path.parents
+            if (parent / "autograder" / "grade.py").is_file()
+        ),
+        None,
+    )
+
+    if project_root is None:
+        print("KHÔNG TÌM THẤY THƯ MỤC GỐC DỰ ÁN.")
+        print("Hãy đặt file này trong DU_AN_TEST_PYTHON/submissions/de1/.")
+        input("\nNhấn Enter để thoát...")
+        return
+
+    sys.path.insert(0, str(project_root))
+
+    print("=" * 55)
+    print("          CHƯƠNG TRÌNH CHẤM ĐIỂM TỰ ĐỘNG")
+    print("=" * 55)
+    student_id = input("Nhập mã sinh viên (Enter để dùng SV001): ").strip()
+    if not student_id:
+        student_id = "SV001"
+
+    try:
+        from autograder.grade import grade
+
+        grade(submission_path, student_id)
+    except Exception as error:
+        print(f"\nKhông thể chấm bài: {type(error).__name__}: {error}")
+
+    input("\nNhấn Enter để đóng cửa sổ...")
+
+
+if __name__ == "__main__":
+    _run_autograder()
