@@ -37,11 +37,11 @@ DU_AN_TEST_PYTHON/
 
 ## 2. Đề 11301
 
-Các file `submissions_de1/Cau1.py` đến `Cau5.py` là bài làm mẫu theo từng câu. Bộ test chạy file nằm trong `test_de1.py`.
+Các file trong `submissions_de1/` là nơi sinh viên tự làm. Câu 1 được chia thành `Cau1a.py`, `Cau1b.py`, `Cau1c.py`; các câu còn lại dùng `Cau2.py` đến `Cau5.py`. Thư mục `submissions_de1_dapan/` chứa đáp án tham khảo để kiểm tra bộ chấm. Bộ test nằm trong `test_de1.py`.
 
 | File | Nội dung |
 |---|---|
-| `Cau1.py` | Kiểm tra n, đếm chữ số lẻ và tính tổng phân số |
+| `Cau1a.py` | Nhập n và kiểm tra n thuộc [1, 1500] |\n| `Cau1b.py` | Đếm số lượng chữ số lẻ |\n| `Cau1c.py` | Tính tổng S = 1/2 + 1/4 + ... + 1/(2n) |
 | `Cau2.py` | Xử lý chuỗi: đếm chữ hoa, kiểm tra đối xứng, tính tổng chữ số |
 | `Cau3.py` | Danh sách số nguyên, dừng khi gặp 0, tính tổng và đếm phần tử |
 | `Cau4.py` | Quản lý sách bằng từ điển, thêm và xóa sách |
