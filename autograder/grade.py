@@ -87,7 +87,8 @@ def grade(student_file: str | Path, student_id: str = "Chưa nhập") -> float:
 
         question_score = 2 * correct / len(cases)
         total_score += question_score
-        print(f"  Điểm câu: {question_score:.2f}/2 ({correct}/{len(cases)} test)")
+        status = "ĐÚNG" if correct == len(cases) else "CHƯA ĐÚNG HOÀN TOÀN"
+        print(f"  KẾT QUẢ {question.upper()}: {status} | ĐIỂM: {question_score:.2f}/2 ({correct}/{len(cases)} test đúng)")
 
     print("\n" + "=" * 55)
     print(f"TỔNG ĐIỂM: {total_score:.2f}/10")
