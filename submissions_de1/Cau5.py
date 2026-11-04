@@ -1,28 +1,19 @@
-"""Cau 5 - De thi Python 11301: lop DienThoai."""
+"""CAU 5 - De 11301
+Yeu cau: Xay dung lop DienThoai voi cac thuoc tinh va phuong thuc
+theo yeu cau bai thi.
+"""
 class DienThoai:
     def __init__(self, MaMay, TenMay, HangSanXuat, DungLuongPin, GiaBan):
-        self.MaMay = MaMay
-        self.TenMay = TenMay
-        self.HangSanXuat = HangSanXuat
-        self.DungLuongPin = DungLuongPin
-        self.GiaBan = GiaBan
+        # TODO: Khoi tao cac thuoc tinh cua doi tuong
+        pass
 
     def thongtindienthoai(self):
-        return (
-            f"MaMay: {self.MaMay}\n"
-            f"TenMay: {self.TenMay}\n"
-            f"HangSanXuat: {self.HangSanXuat}\n"
-            f"DungLuongPin: {self.DungLuongPin}\n"
-            f"GiaBan: {self.GiaBan}"
-        )
+        # TODO: Tra ve thong tin dien thoai theo yeu cau
+        pass
 
 def main():
-    phones = [
-        DienThoai("DT01", "iPhone 15 Pro", "Apple", 3274, 28990000),
-        DienThoai("DT02", "Galaxy S24 Ultra", "Samsung", 5000, 29990000),
-    ]
-    for phone in phones:
-        print(phone.thongtindienthoai())
+    # TODO: Tao doi tuong va hien thi thong tin theo de bai
+    pass
 
 if __name__ == "__main__":
     main()
