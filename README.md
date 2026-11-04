@@ -65,7 +65,7 @@ Hoặc nhấp đúp file:
 cham_de_11301.bat
 ```
 
-Muốn chấm bài khác, thay các file trong `submissions_de1/` bằng bài làm tương ứng và giữ nguyên tên `Cau1.py` ... `Cau5.py`.
+Mặc định, chương trình chấm các file trong `submissions_de1/` (bài sinh viên tự làm).\n\nĐể kiểm tra thử bộ chấm bằng đáp án tham khảo đã có sẵn, chạy:\n\n```powershell\npy autograde_de1.py --student-id TEST --submissions submissions_de1_dapan\n```\n\nSinh viên chỉ sửa các file trong `submissions_de1/`. Không sửa thư mục `submissions_de1_dapan/` khi làm bài.
 
 ## 4. Chạy Pytest
 
