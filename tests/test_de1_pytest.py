@@ -4,7 +4,7 @@ from pathlib import Path
 from autograde_de1 import run_code
 
 ROOT = Path(__file__).resolve().parents[1]
-SUBMISSIONS = ROOT / "submissions_de1"
+SUBMISSIONS = ROOT / "submissions_de1_dapan"
 
 
 def test_cau1_runs():
