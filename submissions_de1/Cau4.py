@@ -1,31 +1,10 @@
-"""Cau 4 - De thi Python 11301.
-Quy uoc dau vao de cham tu dong: nhap so luong sach, thong tin tung sach,
-sau do nhap ma sach can xoa.
+"""CAU 4 - De 11301
+Yeu cau: Quan ly sach bang tu dien, them sach va xoa sach theo ma.
+Quy uoc nhap lieu hien tai duoc mo ta trong test_de1.py.
 """
 def main():
-    books = {}
-    count = int(input("Nhap so luong sach: "))
-    for _ in range(count):
-        ma_so = input("Ma so sach: ")
-        ten_sach = input("Ten sach: ")
-        tac_gia = input("Ten tac gia: ")
-        nha_xuat_ban = input("Nha xuat ban: ")
-        nam_xuat_ban = int(input("Nam xuat ban: "))
-        books[ma_so] = {
-            "TenSach": ten_sach,
-            "TenTacGia": tac_gia,
-            "NhaXuatBan": nha_xuat_ban,
-            "NamXuatBan": nam_xuat_ban,
-        }
-
-    print("Tu dien sach:", books)
-    ma_can_xoa = input("Nhap ma sach can xoa: ")
-    if ma_can_xoa in books:
-        del books[ma_can_xoa]
-        print("Da xoa sach:", ma_can_xoa)
-    else:
-        print("Khong tim thay cuon sach can xoa.")
-    print("Tu dien sau khi xu ly:", books)
+    # TODO: Tu viet loi giai Cau 4 tai day
+    pass
 
 if __name__ == "__main__":
     main()
