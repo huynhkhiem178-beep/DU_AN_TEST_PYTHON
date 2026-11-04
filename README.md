@@ -1,6 +1,10 @@
-# Dự án kiểm thử Python bằng Pytest
+# Dự án kiểm thử và chấm điểm tự động Python
 
-Dự án xây dựng bộ kiểm thử tự động cho **đề thi kết thúc môn Lập trình Python – mã đề 11301**. Nội dung được chia thành 5 nhóm tương ứng 5 câu trong đề.
+Dự án có hai phần:
+- **Pytest:** kiểm thử các hàm Python theo từng câu của đề.
+- **Autograder:** chạy bộ test đã định nghĩa, đối chiếu kết quả và tính điểm trên thang 10.
+
+Bộ câu hỏi hiện có được xây dựng theo nội dung đề mã **11301** đã dùng trong dự án. Mỗi câu tối đa 2 điểm.
 
 ## 1. Cấu trúc thư mục
 
@@ -14,67 +18,80 @@ DU_AN_TEST_PYTHON/
 │   ├── test_question_2_strings.py
 │   ├── test_question_3_lists.py
 │   ├── test_question_4_dictionary.py
-│   └── test_question_5_oop.py
+│   ├── test_question_5_oop.py
+│   └── test_autograder.py
+├── autograder/
+│   ├── __init__.py
+│   ├── test_cases_de1.py
+│   └── grade.py
+├── submissions/
+│   ├── de1/
+│   └── de2/
 ├── pytest.ini
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
 
-## 2. Nội dung kiểm thử
+## 2. Nội dung đề 11301
 
-| File kiểm thử | Nội dung đề thi |
+| Câu | Nội dung |
 |---|---|
-| `test_question_1_numbers.py` | Kiểm tra n trong [1, 1500], đếm chữ số lẻ, tính S = 1/2 + 1/4 + ... + 1/(2n) |
-| `test_question_2_strings.py` | Đếm chữ hoa, kiểm tra chuỗi đối xứng, tính tổng chữ số trong chuỗi |
-| `test_question_3_lists.py` | Nhập danh sách đến số 0, tổng số dương chẵn, đếm số lần xuất hiện |
-| `test_question_4_dictionary.py` | Thêm thông tin sách, kiểm tra năm xuất bản, xóa sách theo mã |
-| `test_question_5_oop.py` | Khởi tạo đối tượng `DienThoai`, kiểm tra thuộc tính và nội dung hiển thị |
+| 1 | Kiểm tra số nguyên, đếm chữ số lẻ, tính tổng phân số |
+| 2 | Xử lý chuỗi: đếm chữ hoa, kiểm tra đối xứng, tính tổng chữ số |
+| 3 | Xử lý danh sách: dừng khi gặp 0, tổng số dương chẵn, đếm phần tử |
+| 4 | Quản lý sách bằng từ điển, thêm và xóa theo mã |
+| 5 | Lập trình hướng đối tượng với lớp `DienThoai` |
 
 ## 3. Cài đặt trên Windows
 
-Mở Terminal tại thư mục dự án và chạy:
+Mở PowerShell tại thư mục dự án:
 
 ```powershell
 py -m venv .venv
-.venv\Scripts\Activate.ps1
-py -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-Nếu PowerShell không cho phép kích hoạt môi trường ảo, có thể chạy trực tiếp:
+Không bắt buộc phải kích hoạt môi trường ảo.
+
+## 4. Chạy Pytest
+
+Chạy toàn bộ kiểm thử:
 
 ```powershell
-.venv\Scripts\python.exe -m pip install -r requirements.txt
-.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m pytest -v
 ```
 
-## 4. Chạy kiểm thử
+Chạy riêng một câu:
 
-Chạy toàn bộ bài kiểm thử:
-
-```bash
-py -m pytest
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/test_question_1_numbers.py
 ```
 
-Chạy riêng một câu, ví dụ câu 1:
+## 5. Chấm tự động bài làm
 
-```bash
-py -m pytest tests/test_question_1_numbers.py
+1. Đặt file bài làm của sinh viên trong thư mục tương ứng, ví dụ `submissions/de1/bai_lam.py`.
+2. File bài làm cần định nghĩa các hàm/lớp có tên, tham số và kiểu kết quả tương ứng với các mục trong `src/exam_tasks.py`.
+3. Chạy lệnh từ thư mục gốc:
+
+```powershell
+.\.venv\Scripts\python.exe -m autograder.grade submissions/de1/bai_lam.py --student-id SV001
 ```
 
-Chạy và xem kết quả ngắn gọn:
+Chương trình sẽ:
+- Chạy từng test case trong bộ dữ liệu đề 01.
+- Hiển thị PASS hoặc FAIL cho từng test.
+- Tính điểm từng câu theo tỉ lệ test đúng.
+- Cộng điểm 5 câu, tối đa 10 điểm.
 
-```bash
-py -m pytest -q
-```
+**Lưu ý:** Bộ chấm hiện tại gọi trực tiếp hàm/lớp trong file bài làm và kiểm tra giá trị trả về. Nó chưa mô phỏng nhập liệu từ bàn phím hoặc chấm nội dung in ra màn hình như script mẫu dạng `subprocess`.
 
-## 5. Ý nghĩa kết quả
+## 6. Thêm đề mới
 
-- `PASSED`: hàm đáp ứng trường hợp kiểm thử.
-- `FAILED`: kết quả thực tế khác kết quả mong đợi hoặc phát sinh lỗi không mong muốn.
-- `ERROR`: lỗi trong quá trình thiết lập/chạy kiểm thử.
-- `skipped`: trường hợp được chủ động bỏ qua.
+- Tạo file dữ liệu kiểm thử riêng trong thư mục `autograder/`.
+- Mỗi test case cần có tên hàm, tham số đầu vào và kết quả mong đợi.
+- Chỉ thêm đáp án khi có nội dung đề và đáp án đáng tin cậy. Thư mục `submissions/de2/` hiện là nơi đặt bài làm; chưa có bộ test đề 02 được xác nhận.
 
-## 6. Ghi chú về đề
+## 7. Ghi chú
 
-Câu 1c trong đáp án đính kèm được hiểu là tổng `1/(2*i)` với `i` chạy từ 1 đến `n`. Chuỗi đối xứng được kiểm tra đúng theo phép so sánh chuỗi gốc với chuỗi đảo ngược (phân biệt chữ hoa/chữ thường). Các hàm được tách riêng để dễ kiểm thử; phần nhập/xuất bàn phím có thể xây dựng thành giao diện riêng sau này.
+Công thức câu 1c đang được hiểu là `1/2 + 1/4 + ... + 1/(2n)` theo cách diễn giải đã dùng khi xây dựng phiên bản trước. Cần đối chiếu lại với đề/đáp án gốc nếu giảng viên yêu cầu chính xác tuyệt đối.
