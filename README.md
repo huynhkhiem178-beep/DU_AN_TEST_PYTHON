@@ -35,10 +35,17 @@ DU_AN_TEST_PYTHON/
 
 Mở Terminal tại thư mục dự án và chạy:
 
-```bash
+```powershell
 py -m venv .venv
-.venv\\Scripts\\activate
+.venv\Scripts\Activate.ps1
 py -m pip install -r requirements.txt
+```
+
+Nếu PowerShell không cho phép kích hoạt môi trường ảo, có thể chạy trực tiếp:
+
+```powershell
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m pytest
 ```
 
 ## 4. Chạy kiểm thử
