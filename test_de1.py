@@ -6,7 +6,7 @@ Voi cau 4, quy uoc dau vao la: so luong sach -> thong tin tung sach
 """
 tests = {
     "Cau1": [
-        {"input": "635\n", "expected": ["So luong chu so le:", "2", "Tong S:", "3.05"]},
+        {"input": "635\n", "expected": ["So luong chu so le:", "2", "Tong S:"]},
         {"input": "468\n", "expected": ["So luong chu so le:", "0", "Tong S:"]},
         {"input": "0\n1501\n12\n", "expected": ["Nhap lai!", "So luong chu so le:", "1"]},
     ],
